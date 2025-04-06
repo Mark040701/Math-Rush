@@ -211,12 +211,19 @@ localStorage.setItem("answers", JSON.stringify(answers));
                 let correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
                 localStorage.setItem("correctAnswers", correctAnswers + 1);
                 document.getElementById("correct-modal").classList.remove("hidden");
+                streak++;
+            if (streak > maxStreak) {
+                maxStreak = streak;
+            }
+
+
             } else {
                 wrongSound.play();
                 let incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
                 localStorage.setItem("incorrectAnswers", incorrectAnswers + 1);
                 document.getElementById("wrong-modal").classList.remove("hidden");
-            
+              // Reset streak
+              streak = 0; 
             }
             // Show feedback and move to the next question
             setTimeout(() => {

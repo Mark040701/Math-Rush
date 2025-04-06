@@ -127,6 +127,7 @@
         document.getElementById("accuracy-text").textContent = `${accuracy}%`;
         document.getElementById("correct-answers").textContent = correctAnswers;
         document.getElementById("incorrect-answers").textContent = incorrectAnswers;
+        document.getElementById("streak").textContent = maxStreak; // Display max streak
                  
 
                  // Provide feedback based on accuracy
@@ -162,6 +163,7 @@
                document.getElementById("retake-btn").addEventListener("click", function () {
     localStorage.setItem("correctAnswers", 0);
     localStorage.setItem("incorrectAnswers", 0);
+    localStorage.setItem("maxStreak", 0);
     localStorage.setItem("answers", JSON.stringify([]));
     window.location.href = "game.html"; // Redirect to the first question
 });
