@@ -187,28 +187,31 @@
             toggleMusicBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
         });
 
-        // Answer Button Click Event
-        answerButtons.forEach(button => {
-            button.addEventListener("click", function () {
-                const selectedValue = this.getAttribute("data-value");
+             // Answer Button Click Event
+    answerButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const selectedValue = this.getAttribute("data-value");
+            const correctAnswer = "4"; // Correct answer for Question 1
 
-                if (selectedValue === "4") { // Change "82" to the correct answer
-                    correctSound.currentTime = 0; // Reset sound to start
-                    correctSound.play(); // Play correct sound
-                    document.getElementById("correct-modal").classList.remove("hidden");
-
-                    setTimeout(() => {
-                        transitionToNextPage();
-                    }, 2000); // Show modal for 2 seconds, then move to next question
-                } else {
-                    wrongSound.currentTime = 0; // Reset sound to start
-                    wrongSound.play(); // Play wrong sound
-                    document.getElementById("wrong-modal").classList.remove("hidden");
-
-                    setTimeout(() => {
-                        transitionToNextPage();
-                    }, 2000); // Show modal for 2 seconds, then move to next question
-                }
+            // Update score in localStorage
+            if (selectedValue === correctAnswer) {
+                correctSound.currentTime = 0; // Reset sound to start
+                correctSound.play();
+                let correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
+                localStorage.setItem("correctAnswers", correctAnswers + 1);
+                document.getElementById("correct-modal").classList.remove("hidden");
+            } else {
+                wrongSound.play();
+                let incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
+                localStorage.setItem("incorrectAnswers", incorrectAnswers + 1);
+                document.getElementById("wrong-modal").classList.remove("hidden");
+            
+            }
+            // Show feedback and move to the next question
+            setTimeout(() => {
+                transitionToNextPage();
+            }, 2000);// Show modal for 2 seconds, then move to next question
+               
             });
         });
 

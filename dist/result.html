@@ -164,32 +164,32 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             function updateResults(correct, incorrect, playerName = "Player") {
-                const totalQuestions = correct + incorrect;
-                const accuracy = Math.round((correct / totalQuestions) * 100);
+                const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
+        const incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
+        const totalQuestions = correctAnswers + incorrectAnswers;
+        const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
                 
-                document.getElementById("player-name").textContent = playerName;
-                document.getElementById("final-score").textContent = `${correct}/${totalQuestions}`;
-                document.getElementById("accuracy-bar").style.width = accuracy + "%";
-                document.getElementById("accuracy-text").textContent = accuracy + "%";
-                document.getElementById("correct-answers").textContent = correct;
-                document.getElementById("incorrect-answers").textContent = incorrect;
-                document.getElementById("streak").textContent = Math.floor(correct / 2); // Example streak logic
-
+                // Update the result page
+        document.getElementById("player-name").textContent = localStorage.getItem("playerName") || "Player";
+        document.getElementById("final-score").textContent = `${correctAnswers}/${totalQuestions}`;
+        document.getElementById("accuracy-bar").style.width = `${accuracy}%`;
+        document.getElementById("accuracy-text").textContent = `${accuracy}%`;
+        document.getElementById("correct-answers").textContent = correctAnswers;
+        document.getElementById("incorrect-answers").textContent = incorrectAnswers;
                  
 
-                let feedback = "Keep Practicing!";
-                let color = "text-red-400";
-
-                if (accuracy >= 90) {
-                    feedback = "🎉 Incredible! You're a Math Pro!";
-                    color = "text-green-400";
-                } else if (accuracy >= 70) {
-                    feedback = "🔥 Great Job! Keep it up!";
-                    color = "text-yellow-400";
-                } else if (accuracy >= 50) {
-                    feedback = "🙂 Not Bad! Try for a better score!";
-                    color = "text-blue-400";
-                }
+                 // Provide feedback based on accuracy
+        const performanceMessage = document.getElementById("performance-message");
+        if (accuracy >= 90) {
+            performanceMessage.textContent = "Excellent!";
+            performanceMessage.classList.add("text-green-400");
+        } else if (accuracy >= 70) {
+            performanceMessage.textContent = "Good Job!";
+            performanceMessage.classList.add("text-yellow-400");
+        } else {
+            performanceMessage.textContent = "Keep Practicing!";
+            performanceMessage.classList.add("text-red-400");
+        }
 
                 document.getElementById("performance-message").textContent = feedback;
                 document.getElementById("performance-message").classList.add(color);
