@@ -116,6 +116,7 @@
   // Update the result page with scores
             function updateResults(correct, incorrect, playerName = "Player") {
                 document.getElementById("player-name").textContent = playerName;
+                
                 const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
         const incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
         const totalQuestions = correctAnswers + incorrectAnswers;
