@@ -193,7 +193,16 @@ cups of flour will you need altogether?
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "12"; // Correct answer for Question 1
+   // Retrieve existing answers from localStorage
+   let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
+// Save the user's answer and the correct answer
+answers.push({
+  question: "A recipe requires 4 cups of flour to make a cake. If you want to make 3 cakes, how many cups of flour will you need altogether?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start

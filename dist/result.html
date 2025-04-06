@@ -85,84 +85,35 @@
 <div class="mt-6 text-left">
     <h2 class="text-xl font-bold mb-2 text-white">Breakdown</h2>
     <div id="breakdown-container" class="space-y-4">
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 1</p>
-            <p class="mt-1">Sarah has 58 apples and buys 24 more at the market. How many apples does Sarah have now?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 82</p>
-            <p class="text-red-400">Your Answer: B) 82</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 2</p>
-            <p class="mt-1">A farmer harvested 125 tomatoes from one plot and 89 tomatoes from another plot. How many tomatoes did he harvest in total?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 214</p>
-            <p class="text-red-400">Your Answer: B) 214</p>
-        </div> 
- 
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 3</p>
-            <p class="mt-1">If a baker bakes 13 dozen cookies and sells 5 dozen, how many cookies does he still have left?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 96</p>
-            <p class="text-red-400">Your Answer: B) 96</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 4</p>
-            <p class="mt-1">Lisa scored 85 out of 100 on her math test. What percentage did she earn on her test?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 85%</p>
-            <p class="text-red-400">Your Answer: B) 85%</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 5</p>
-            <p class="mt-1">If a train travels 60 miles in one hour, how far will it travel in 3 hours at the same speed?</p>
-            <p class="mt-2 text-green-400">Correct Answer: C) 180 miles</p>
-            <p class="text-red-400">Your Answer: C) 180 miles</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 6</p>
-            <p class="mt-1">If you have 12 chocolates and you share them equally with 3 friends, how many chocolates does each person get?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 4</p>
-            <p class="text-red-400">Your Answer: B) 4</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 7</p>
-            <p class="mt-1">Lucy bought 5 notebooks, each costing $2.75. If she also paid $1.50 for a pencil, how much did she spend in total?</p>
-            <p class="mt-2 text-green-400">Correct Answer: C) $15.25</p>
-            <p class="text-red-400">Your Answer: C) $15.25</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 8</p>
-            <p class="mt-1">A car was initially priced at $25,000 but is now priced at $22,500. By what percentage has the price decreased?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 10%</p>
-            <p class="text-red-400">Your Answer: D) 15%</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 9</p>
-            <p class="mt-1"> John was reading a book with 120 pages. He has read 37 pages. How many pages does he have left to read?</p>
-            <p class="mt-2 text-green-400">Correct Answer: A) 93</p>
-            <p class="text-red-400">Your Answer: A) 93</p>
-        </div>
-
-        <div class="bg-gray-800 p-4 rounded-lg text-white">
-            <p class="text-sm font-semibold">Question 10</p>
-            <p class="mt-1">A recipe requires 4 cups of flour to make a cake. If you want to make 3 cakes, how many cups of flour will you need altogether?</p>
-            <p class="mt-2 text-green-400">Correct Answer: B) 12 cups</p>
-            <p class="text-red-400">Your Answer: B) 12 cups</p>
-        </div>
-
+<!-- the answers of the users and corrected answers will go here -->
     </div>
 </div>
 
     </div>
 
     <script>
+  
+
+    
         document.addEventListener("DOMContentLoaded", function () {
+
+            const answers = JSON.parse(localStorage.getItem("answers")) || [];
+    const breakdownContainer = document.getElementById("breakdown-container");
+
+    // Loop through the answers and display them
+    answers.forEach((answer, index) => {
+        const questionHTML = `
+            <div class="bg-gray-800 p-4 rounded-lg text-white">
+                <p class="text-sm font-semibold">Question ${index + 1}</p>
+                <p class="mt-1">${answer.question}</p>
+                <p class="mt-2 text-green-400">Correct Answer: ${answer.correctAnswer}</p>
+                <p class="text-red-400">Your Answer: ${answer.userAnswer}</p>
+            </div>
+        `;
+        breakdownContainer.innerHTML += questionHTML;
+    });
+
+  // Update the result page with scores
             function updateResults(correct, incorrect, playerName = "Player") {
                 const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
         const incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
@@ -190,7 +141,7 @@
             performanceMessage.textContent = "Keep Practicing!";
             performanceMessage.classList.add("text-red-400");
         }
-
+    
                 document.getElementById("performance-message").textContent = feedback;
                 document.getElementById("performance-message").classList.add(color);
             }
@@ -208,10 +159,12 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 // Ensure elements are loaded before binding events
-                document.getElementById("retake-btn").addEventListener("click", function() {
-                    console.log("Retake Quiz clicked"); // Debugging
-                    window.location.href = "game.html"; // Ensure this file exists
-                });
+               document.getElementById("retake-btn").addEventListener("click", function () {
+    localStorage.setItem("correctAnswers", 0);
+    localStorage.setItem("incorrectAnswers", 0);
+    localStorage.setItem("answers", JSON.stringify([]));
+    window.location.href = "game.html"; // Redirect to the first question
+});
 
                 document.getElementById("exit-btn").addEventListener("click", function() {
                     console.log("Exit clicked"); // Debugging

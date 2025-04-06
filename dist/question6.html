@@ -192,7 +192,16 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "4"; // Correct answer for Question 1
+   // Retrieve existing answers from localStorage
+   let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
+// Save the user's answer and the correct answer
+answers.push({
+  question: "If you have 12 chocolates and you share them equally with 3 friends, how many chocolates does each person get?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start

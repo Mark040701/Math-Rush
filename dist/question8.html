@@ -192,7 +192,16 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "10"; // Correct answer for Question 1
+   // Retrieve existing answers from localStorage
+   let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
+// Save the user's answer and the correct answer
+answers.push({
+  question: "A car was initially priced at $25,000 but is now priced at $22,500. By what percentage has the price decreased?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start

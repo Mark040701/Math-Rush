@@ -192,7 +192,16 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "85"; // Correct answer for Question 1
+   // Retrieve existing answers from localStorage
+   let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
+// Save the user's answer and the correct answer
+answers.push({
+  question: "Lisa scored 85 out of 100 on her math test. What percentage did she earn on her test?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start

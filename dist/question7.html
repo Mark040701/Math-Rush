@@ -192,7 +192,16 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "15.25"; // Correct answer for Question 1
+   // Retrieve existing answers from localStorage
+   let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
+// Save the user's answer and the correct answer
+answers.push({
+  question: "Lucy bought 5 notebooks, each costing $2.75. If she also paid $1.50 for a pencil, how much did she spend in total?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start

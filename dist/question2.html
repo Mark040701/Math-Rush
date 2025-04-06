@@ -193,6 +193,17 @@
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "214"; // Correct answer for Question 1
 
+               // Retrieve existing answers from localStorage
+        let answers = JSON.parse(localStorage.getItem("answers")) || [];
+
+// Save the user's answer and the correct answer
+answers.push({
+  question: "A farmer harvested 125 tomatoes from one plot and 89 tomatoes from another plot. How many tomatoes did he harvest in total?",
+  correctAnswer: correctAnswer,
+  userAnswer: selectedValue
+});
+localStorage.setItem("answers", JSON.stringify(answers));
+
             // Update score in localStorage
             if (selectedValue === correctAnswer) {
                 correctSound.currentTime = 0; // Reset sound to start
