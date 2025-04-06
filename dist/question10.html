@@ -114,6 +114,10 @@ cups of flour will you need altogether?
         </div>
     </div>
 
+<!-- Timeout Audio -->
+<audio id="timeout-audio">
+    <source src="music/TimeOut.mp3" type="audio/mp3">
+</audio>
     </div>
 
     
@@ -150,8 +154,8 @@ cups of flour will you need altogether?
 
 
 
-        // Start Timer
-        function startTimer() {
+         // Start Timer
+         function startTimer() {
             // Start the countdown
             const timerInterval = setInterval(() => {
                 timeLeft--;
@@ -160,7 +164,10 @@ cups of flour will you need altogether?
 
                 if (timeLeft === 0) {
                     clearInterval(timerInterval);
-                    transitionToNextPage();
+                    document.getElementById("timeout-audio").play(); // 🔊 Play timeout sound
+                    setTimeout(() => {
+                        transitionToNextPage(); // Go to next question
+                    }, 500); // Optional delay so sound doesn't get cut off instantly
                 }
             }, 1000);
         }
