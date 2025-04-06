@@ -137,10 +137,13 @@
         const correctSound = new Audio("music/correctAnswer.mp3");
         const wrongSound = new Audio("music/wrongAnswer.mp3");
 
-         // Initialize score in localStorage
+      // Clear previous session data
+      localStorage.setItem("answers", JSON.stringify([]));
     localStorage.setItem("correctAnswers", 0);
     localStorage.setItem("incorrectAnswers", 0);
-
+    localStorage.setItem("streak", 0);
+    localStorage.setItem("maxStreak", 0);
+    
         // Play countdown sound
         countdownAudio.play();
 
@@ -238,6 +241,10 @@
              // Reset streak
              streak = 0;
             }
+               // Save streak and max streak
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("maxStreak", maxStreak);
+
             // Show feedback and move to the next question
             setTimeout(() => {
                 transitionToNextPage();

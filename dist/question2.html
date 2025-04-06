@@ -192,7 +192,9 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "214"; // Correct answer for Question 1
+
             let streak = parseInt(localStorage.getItem("streak")) || 0;
+            let maxStreak = parseInt(localStorage.getItem("maxStreak")) || 0;
                // Retrieve existing answers from localStorage
         let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
@@ -211,6 +213,7 @@ localStorage.setItem("answers", JSON.stringify(answers));
                 let correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
                 localStorage.setItem("correctAnswers", correctAnswers + 1);
                 document.getElementById("correct-modal").classList.remove("hidden");
+
                 streak++;
             if (streak > maxStreak) {
                 maxStreak = streak;
@@ -225,6 +228,10 @@ localStorage.setItem("answers", JSON.stringify(answers));
               // Reset streak
               streak = 0; 
             }
+               // Save streak and max streak
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("maxStreak", maxStreak);
+
             // Show feedback and move to the next question
             setTimeout(() => {
                 transitionToNextPage();

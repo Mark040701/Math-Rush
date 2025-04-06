@@ -62,7 +62,7 @@
             </div>
             <div class="bg-gray-800 p-3 rounded-lg">
                 <p class="text-xl font-bold" id="streak">5</p>
-                <p class="text-sm">Streak</p>
+                <p class="text-sm">Max Streak</p>
             </div>
         </div>
 
@@ -119,6 +119,7 @@
         const incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
         const totalQuestions = correctAnswers + incorrectAnswers;
         const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+        const maxStreak = parseInt(localStorage.getItem("maxStreak")) || 0;
                 
                 // Update the result page
         document.getElementById("player-name").textContent = localStorage.getItem("playerName") || "Player";
@@ -163,9 +164,11 @@
                document.getElementById("retake-btn").addEventListener("click", function () {
     localStorage.setItem("correctAnswers", 0);
     localStorage.setItem("incorrectAnswers", 0);
+    localStorage.setItem("streak", 0);
     localStorage.setItem("maxStreak", 0);
     localStorage.setItem("answers", JSON.stringify([]));
-    window.location.href = "game.html"; // Redirect to the first question
+    alert("Thanks for playing! See you next time!");
+    window.location.href = "index.html"; // Redirect to the first question
 });
 
                 document.getElementById("exit-btn").addEventListener("click", function() {
