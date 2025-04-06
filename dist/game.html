@@ -208,6 +208,8 @@
 
             // Retrieve existing answers from localStorage
         let answers = JSON.parse(localStorage.getItem("answers")) || [];
+        let streak = parseInt(localStorage.getItem("streak")) || 0;
+        let maxStreak = parseInt(localStorage.getItem("maxStreak")) || 0;
 
           // Save the user's answer and the correct answer
           answers.push({

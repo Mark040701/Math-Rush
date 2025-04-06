@@ -192,6 +192,7 @@
         button.addEventListener("click", function () {
             const selectedValue = this.getAttribute("data-value");
             const correctAnswer = "85"; // Correct answer for Question 1
+            let streak = parseInt(localStorage.getItem("streak")) || 0;
    // Retrieve existing answers from localStorage
    let answers = JSON.parse(localStorage.getItem("answers")) || [];
 
