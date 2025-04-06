@@ -115,8 +115,8 @@
 
   // Update the result page with scores
             function updateResults(correct, incorrect, playerName = "Player") {
-                document.getElementById("player-name").textContent = playerName;
-                
+               
+
                 const correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || 0;
         const incorrectAnswers = parseInt(localStorage.getItem("incorrectAnswers")) || 0;
         const totalQuestions = correctAnswers + incorrectAnswers;
@@ -125,6 +125,7 @@
                 
                 // Update the result page
         document.getElementById("player-name").textContent = localStorage.getItem("playerName") || "Player";
+        document.getElementById("player-name").textContent = playerName;
         document.getElementById("final-score").textContent = `${correctAnswers}/${totalQuestions}`;
         document.getElementById("accuracy-bar").style.width = `${accuracy}%`;
         document.getElementById("accuracy-text").textContent = `${accuracy}%`;
