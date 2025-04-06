@@ -198,17 +198,17 @@
                 usernameModal.classList.remove("hidden");
             });
 
-            // Save username and display it
             submitUsernameBtn.addEventListener("click", function () {
-                const username = usernameInput.value.trim();
-                if (username !== "") {
-                    usernameText.textContent = username;
-                    displayUsername.classList.remove("hidden");
-                    usernameModal.classList.add("hidden");
-                } else {
-                    alert("Please enter your name.");
-                }
-            });
+    const username = usernameInput.value.trim();
+    if (username !== "") {
+        localStorage.setItem("playerName", username); // Save the player's name
+        usernameText.textContent = username;
+        displayUsername.classList.remove("hidden");
+        usernameModal.classList.add("hidden");
+    } else {
+        alert("Please enter your name.");
+    }
+});
         });
     </script>
 
