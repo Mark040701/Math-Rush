@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MathRush - Game</title>
-    <link href="/dist/output.css" rel="stylesheet">
+    <link href="output.css" rel="stylesheet">
     <style>
         body {
-            background: url('/dist/img/bg2.jpg') no-repeat center center fixed;
+            background: url('img/bg2.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -58,7 +58,7 @@
     
     <!-- Background Music -->
     <audio id="bg-music" loop>
-        <source src="/dist/music/nyan-cat_1.mp3" type="audio/mp3">
+        <source src="music/nyan-cat_1.mp3" type="audio/mp3">
     </audio>
     
     <!-- Music Controls -->
@@ -94,14 +94,14 @@ cups of flour will you need altogether?
         <!-- Timer Bar -->
         <div class="mt-6 sm:mt-8 w-full bg-gray-700 rounded-full h-3 sm:h-4 relative">
             <div id="timer-bar" class="w-full h-3 sm:h-4 bg-green-400 rounded-full"></div>
-            <img src="/dist/img/OriginalNyan.webp" id="nyan-cat" class="h-6 sm:h-8">
+            <img src="img/OriginalNyan.webp" id="nyan-cat" class="h-6 sm:h-8">
         </div>
 
             
      <!-- Correct Answer Modal -->
      <div id="correct-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
         <div class="bg-white p-6 sm:p-8 rounded-xl text-center shadow-2xl">
-            <img src="/dist/img/right.gif" alt="Correct Answer" class="w-48 sm:w-64 mx-auto">
+            <img src="img/right.gif" alt="Correct Answer" class="w-48 sm:w-64 mx-auto">
             <p class="text-2xl sm:text-3xl font-bold text-green-700 mt-4">Correct!</p>
         </div>
     </div>
@@ -109,7 +109,7 @@ cups of flour will you need altogether?
     <!-- Wrong Answer Modal -->
     <div id="wrong-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
         <div class="bg-white p-6 sm:p-8 rounded-xl text-center shadow-2xl">
-            <img src="/dist/img/wrong.gif" alt="Wrong Answer" class="w-48 sm:w-64 mx-auto">
+            <img src="img/wrong.gif" alt="Wrong Answer" class="w-48 sm:w-64 mx-auto">
             <p class="text-2xl sm:text-3xl font-bold text-red-700 mt-4">Wrong!</p>
         </div>
     </div>
@@ -129,8 +129,8 @@ cups of flour will you need altogether?
         const bgMusic = document.getElementById("bg-music");
         const toggleMusicBtn = document.getElementById("toggle-music");
         const answerButtons = document.querySelectorAll(".answer");
-        const correctSound = new Audio("/dist/music/correctAnswer.mp3");
-        const wrongSound = new Audio("/dist/music/wrongAnswer.mp3");
+        const correctSound = new Audio("music/correctAnswer.mp3");
+        const wrongSound = new Audio("music/wrongAnswer.mp3");
 
         window.addEventListener("DOMContentLoaded", function () {
         quizContainer.classList.remove("hidden");
